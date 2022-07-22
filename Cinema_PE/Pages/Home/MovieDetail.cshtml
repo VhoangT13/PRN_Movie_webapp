@@ -1,0 +1,233 @@
+﻿@page
+@model Cinema_PE.Pages.Home.MovieDetailModel
+@{
+}
+
+<section class="container p-10 mx-auto">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a asp-page="home"
+                   class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900">
+                    <svg class="w-4 h-4 mr-2"
+                         fill="currentColor"
+                         viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                    </svg>
+                    Home
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400"
+                         fill="currentColor"
+                         viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                    @{ var genre = Model.Genres?.FirstOrDefault(g => g.GenreId == Model.Movie.GenreId);
+                        Cinema_PE.DataAccess.Genre g = new DataAccess.Genre();
+                        if (genre != null)
+                        {
+                            g = genre;
+                        }
+                    }
+                    <a asp-page="home" asp-page-handler="genre" asp-route-id="@g.GenreId"
+                       class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2">@g.Description</a>
+                </div>
+            </li>
+            <li aria-current="page">
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400"
+                         fill="currentColor"
+                         viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">@Model.Movie.Title</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="flex items-center gap-24 mb-14">
+        <img class="w-[300px] h-[400px] rounded" src="@Model.Movie.Image" />
+        <div>
+            <p class="mb-3 font-mono font-bold text-7xl">@Model.Movie.Title</p>
+
+            <div class="flex items-center gap-4 mb-3">
+                <button type="button"
+                        class="px-4 py-2 mb-2 mr-2 text-sm font-medium bg-gray-400 border border-gray-200 rounded-full text-neutral-200 focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200">
+                    @genre.Description
+                </button>
+                <div class="flex items-center">
+                    <svg aria-hidden="true"
+                         class="w-5 h-5 text-yellow-400"
+                         fill="currentColor"
+                         viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <title>First star</title>
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                    <svg aria-hidden="true"
+                         class="w-5 h-5 text-yellow-400"
+                         fill="currentColor"
+                         viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <title>Second star</title>
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                    <svg aria-hidden="true"
+                         class="w-5 h-5 text-yellow-400"
+                         fill="currentColor"
+                         viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <title>Third star</title>
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                    <svg aria-hidden="true"
+                         class="w-5 h-5 text-yellow-400"
+                         fill="currentColor"
+                         viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <title>Fourth star</title>
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                    <svg aria-hidden="true"
+                         class="w-5 h-5 text-gray-300"
+                         fill="currentColor"
+                         viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <title>Fifth star</title>
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                    <p class="ml-2 text-sm font-medium text-gray-500">
+                        4.95 out of 5
+                    </p>
+                </div>
+            </div>
+            <p class="mb-4 text-xl text-neutral-600">
+                @Model.Movie.Description
+            </p>
+            <button type="button"
+                    class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                Watch now
+            </button>
+        </div>
+    </div>
+
+
+    <div>
+        <h3 class="pb-3 mb-4 text-lg border-b">Comments</h3>
+        @{
+            Cinema_PE.DataAccess.Member member = Cinema_PE.DataAccess.Helpers.GetObjectFromJson<Cinema_PE.DataAccess.Member>(HttpContext.Session, "member");
+        }
+        <div>
+            <form method="post" asp-page="moviedetail" asp-page-handler="movieRating">
+                <fieldset class="rate">
+                    <input type="radio" id="rating10" name="rating" value="10" /><label for="rating10"
+                                                                                        title="5 stars"></label>
+                    <input type="radio" id="rating9" name="rating" value="9" /><label class="half"
+                                                                                      for="rating9"
+                                                                                      title="4 1/2 stars"></label>
+                    <input type="radio" id="rating8" name="rating" value="8" /><label for="rating8"
+                                                                                      title="4 stars"></label>
+                    <input type="radio" id="rating7" name="rating" value="7" /><label class="half"
+                                                                                      for="rating7"
+                                                                                      title="3 1/2 stars"></label>
+                    <input type="radio" id="rating6" name="rating" value="6" /><label for="rating6"
+                                                                                      title="3 stars"></label>
+                    <input type="radio" id="rating5" name="rating" value="5" /><label class="half"
+                                                                                      for="rating5"
+                                                                                      title="2 1/2 stars"></label>
+                    <input type="radio" id="rating4" name="rating" value="4" /><label for="rating4"
+                                                                                      title="2 stars"></label>
+                    <input type="radio" id="rating3" name="rating" value="3" /><label class="half"
+                                                                                      for="rating3"
+                                                                                      title="1 1/2 stars"></label>
+                    <input type="radio" id="rating2" name="rating" value="2" /><label for="rating2"
+                                                                                      title="1 star"></label>
+                    <input type="radio" id="rating1" name="rating" value="1" /><label class="half"
+                                                                                      for="rating1"
+                                                                                      title="1/2 star"></label>
+                </fieldset>
+                <input type="hidden" name="movieId" value="@Model.Movie.MovieId" />
+                <textarea id="message"
+                          name="comment"
+                          rows="4"
+                          class="block p-2.5 mb-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                          placeholder="Your message..."></textarea>
+                <button type="submit"
+                        class="text-white float-right bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-4">
+                    Comment
+                </button>
+            </form>
+            @if (TempData["exist"] != null)
+            {
+                <p class="text-red-400">@TempData["exist"]</p>
+            }
+        </div>
+
+        @foreach (var rate in Model.Rates)
+        {
+            <article class="clear-both mb-3">
+                <div class="flex items-center mb-4 space-x-4">
+                    <img class="w-10 h-10 rounded-full"
+                         src="~/assets/images/Avatar-Profile-PNG-Images.png"
+                         alt="" />
+                    @{ Cinema_PE.DataAccess.Member member1 = new Cinema_PE.DataAccess.MovieDBContext().Members.FirstOrDefault(m => m.MemberId == rate.MemberId);}
+                    <div class="space-y-1 font-medium">
+                        <p>@member1.Fullname</p>
+                    </div>
+                </div>
+                @{int rateNumber = (int)Math.Round(rate.Rating) / 2;}
+                <div class="flex items-center mb-1">
+                    @for (int i = 0; i < rateNumber; i++)
+                    {
+                        <svg aria-hidden="true"
+                             class="w-5 h-5 text-yellow-400"
+                             fill="currentColor"
+                             viewBox="0 0 20 20"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <title>First star</title>
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                    }
+                    @for (int i = 0; i < 5 - rateNumber; i++)
+                    {
+                        <svg aria-hidden="true"
+                             class="w-5 h-5 text-gray-300"
+                             fill="currentColor"
+                             viewBox="0 0 20 20"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <title>First star</title>
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                    }
+                    <p class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">@(rate.Rating/2) out of 5</p>
+                </div>
+                <footer class="mb-5 text-sm text-gray-500">
+                    @{ var time = rate.Time.ToString("MMM d, yyyy");}
+                    <p>
+                        Reviewed on
+                        <time datetime="@rate.Time">@time</time>
+                    </p>
+                </footer>
+                <p class="mb-2 font-light text-gray-600">
+                    @rate.Comment
+                </p>
+                @if (member != null && rate.MemberId == member.MemberId)
+                {
+                    <button type="button" class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200  font-medium rounded-lg text-sm px-3 py-1.5 text-center mr-2 mb-2">Delete</button>
+                }
+
+            </article>
+        }
+
+    </div>
+</section>

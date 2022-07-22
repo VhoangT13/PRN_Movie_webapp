@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <header class="container mx-auto mb-20">
+        <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded mb-6 ">
+            <div class="container flex flex-wrap items-center justify-between mx-auto">
+                <a href="#" class="flex items-center">
+                    <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bW92aWV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+                         class="h-6 mr-3 sm:h-9"
+                         alt="App Logo" />
+                    <span class="self-center text-xl font-semibold whitespace-nowrap">MovieQQ</span>
+                </a>
+                @{
+                    Cinema_PE.DataAccess.Member member = Cinema_PE.DataAccess.Helpers.GetObjectFromJson<Cinema_PE.DataAccess.Member>(Context.Session, "member");
+                }
+
+
+                <div class="flex items-center md:order-2">
+                    @if (member == null)
+                    {
+
+                        <div>
+                            <a asp-page="/home/login" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2">Login</a>
+                            <a asp-page="/home/register" class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200  font-medium rounded-lg text-sm px-5 py-2.5 text-center">Register</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName" class="flex items-center text-sm font-medium text-gray-900 rounded-full hover:text-blue-600 md:mr-0 focus:ring-4 focus:ring-gray-100 " type="button">
+                            <span class="sr-only">Open user menu</span>
+                            <img class="mr-2 w-10 h-10 rounded-full" src="~/assets/images/Avatar-Profile-PNG-Images.png" alt="user photo">
+                            @member.Fullname
+                            <svg class="w-4 h-4 mx-1.5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                        </button>
+
+                        <!-- Dropdown menu -->
+                        <div id="dropdownAvatarName" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow " data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(319px, 62px);">
+                            <div class="py-3 px-4 text-sm text-gray-900 ">
+                                <div class="font-medium ">Pro User</div>
+                                <div class="truncate">@member.Email</div>
+                            </div>
+                            <ul class="py-1 text-sm text-gray-700 " aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
+                                <li>
+                                    <a href="#" class="block py-2 px-4 hover:bg-gray-100">Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block py-2 px-4 hover:bg-gray-100 ">Settings</a>
+                                </li>
+                                <li>
+                                    <a asp-page="login" asp-page-handler="logout" class="block py-2 px-4 hover:bg-gray-100 ">Log out</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    }
+
+
+
+                </div>
+                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+                     id="mobile-menu-2">
+                    <ul class="flex flex-col items-center mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium mr-5">
+                        <li>
+                            <a asp-page="home"
+                               class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
+                               aria-current="page">Home</a>
+                        </li>
+                        <li>
+                            <button id="dropdownNavbarLink"
+                                    data-dropdown-toggle="dropdownNavbar"
+                                    class="flex items-center justify-between w-full py-2 pl-3 pr-4 font-medium text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto">
+                                Genres
+                                <svg class="w-4 h-4 ml-1"
+                                     aria-hidden="true"
+                                     fill="currentColor"
+                                     viewBox="0 0 20 20"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                          clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <!-- Dropdown menu -->
+                            <div id="dropdownNavbar"
+                                 class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded shadow w-44">
+                                <ul class="py-1 text-sm text-gray-700"
+                                    aria-labelledby="dropdownLargeButton">
+                                    @foreach (var genre in new Cinema_PE.DataAccess.MovieDBContext().Genres.ToList())
+                                    {
+                                        <li>
+                                            <a asp-page="home" asp-page-handler="genre" asp-route-id="@genre.GenreId" class="block px-4 py-2 hover:bg-gray-100">@genre.Description</a>
+                                        </li>
+                                    }
+
+
+                                </ul>
+                            </div>
+                        </li>
+
+
+                    </ul>
+                    <form method="get" asp-page="/home/home" id="search-form">
+                        <input type="hidden" name="handler" value="search" />
+                        <input type="text"
+                               id="search-navbar"
+                               name="query"
+                               class="block w-full p-2 pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-sm focus:ring-blue-500 focus:border-blue-500"
+                               placeholder="Search..." />
+
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+
+    <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js"></script>
+</body>
+</html>

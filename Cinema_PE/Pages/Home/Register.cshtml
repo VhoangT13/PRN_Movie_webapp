@@ -1,0 +1,100 @@
+﻿@page
+@model Cinema_PE.Pages.Home.RegisterModel
+
+@{
+}
+<div class="container mx-auto">
+    <div class="p-4 w-2/4 bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8  mx-auto">
+        <form class="space-y-6 mx-auto" method="post">
+            <h5 class="text-xl font-medium text-gray-900 text-center mb-5">Registration Form</h5>
+
+            <span class="text-xs text-red-600 mt-1 ml-1">@ViewData["error"]</span>
+            <input type="hidden" name="type" value="2" />
+            <input type="hidden" name="isActive" value="true" />
+
+            <div class="grid gap-6 mb-6 md:grid-cols-2">
+                <div>
+                    <label for="fullname"
+                           class="block mb-2 text-sm font-medium text-gray-900">Fullname</label>
+                    <input type="text"
+                           id="fullname"
+                           name="fullname"
+                           asp-for="Member.Fullname"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                           placeholder="Your fullname" />
+                    <span asp-validation-for="Member.Fullname" class="text-xs text-red-600 mt-1 ml-1"></span>
+                </div>
+
+                <div class="flex flex-col ">
+                    <label for="gender"
+                           class="block mb-2 text-sm font-medium text-gray-900">Gender</label>
+
+                    <div class="flex  basis-1/2 ">
+                        <div class="flex items-center mr-4">
+                            <input id="gender"
+                                   type="radio"
+                                   value="Male"
+                                   name="gender"
+                                   asp-for="Member.Gender"
+                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2" />
+                            <label for="inline-radio"
+                                   class="ml-2 text-sm font-medium text-gray-900">Male</label>
+                        </div>
+                        <div class="flex items-center mr-4">
+                            <input id="gender"
+                                   type="radio"
+                                   value="Female"
+                                   name="gender"
+                                   asp-for="Member.Gender"
+                                   class="w-4 h-4 text-pink-600 bg-gray-100 border-gray-300 focus:ring-pink-500 focus:ring-2" />
+                            <label for="inline-2-radio"
+                                   class="ml-2 text-sm font-medium text-gray-900">Female</label>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Member.Gender" class="text-xs text-red-600 mt-1 ml-1"></span>
+
+                </div>
+
+            </div>
+            <div class="mb-6">
+                <label for="email"
+                       class="block mb-2 text-sm font-medium text-gray-900">Email address</label>
+                <input type="email"
+                       id="email"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                       placeholder="john.doe@company.com"
+                       name="email"
+                       asp-for="Member.Email" />
+                <span asp-validation-for="Member.Email" class="text-xs text-red-600 mt-1 ml-1"></span>
+            </div>
+            <div class="mb-6">
+                <label for="password"
+                       class="block mb-2 text-sm font-medium text-gray-900">Password</label>
+                <input type="password"
+                       id="password"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                       placeholder="•••••••••"
+                       asp-for="Member.Password"
+                       name="password" />
+                <span asp-validation-for="Member.Password" class="text-xs text-red-600 mt-1 ml-1"></span>
+            </div>
+            <div class="mb-6">
+                <label for="confirm_password"
+                       class="block mb-2 text-sm font-medium text-gray-900">Confirm password</label>
+                <input type="password"
+                       id="confirm_password"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                       placeholder="•••••••••"
+                       asp-for="ConfirmPassword"
+                       name="confirmPassword" />
+                <span class="text-xs text-red-600 mt-1 ml-1">@ViewData["errPwd"]</span>
+            </div>
+
+            <button type="submit"
+                    asp-page="Form"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                Submit
+            </button>
+        </form>
+    </div>
+</div>
